@@ -14,4 +14,12 @@ import lombok.Data;
 @Data
 public class OTP {
     static int otp;
+
+    public static int getOtp() {
+        return otp;
+    }
+
+    public static void setOtp(int otp) {
+        OTP.otp = otp;
+    }
 }

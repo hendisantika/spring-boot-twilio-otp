@@ -1,8 +1,8 @@
 package com.hendisantika.service;
 
+import com.hendisantika.dto.Sms;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
-import com.twilio.twiml.voice.Sms;
 import com.twilio.type.PhoneNumber;
 import org.springframework.stereotype.Component;
 import org.springframework.util.MultiValueMap;
@@ -35,8 +35,8 @@ public class SmsService {
         int number = (int) (Math.random() * (max - min + 1) + min);
 
 
-        String msg = "Your OTP - " + number + " please verify this OTP in your Application by Er Prince kumar " +
-                "Technoidentity.com";
+        String msg = "Your OTP - " + number + " please verify this OTP in your Application by Er Hendi Santika " +
+                "https://linktr.ee/hendisantika";
 
 
         Message message = Message.creator(new PhoneNumber(sms.getTo()), new PhoneNumber(FROM_NUMBER), msg)
@@ -52,7 +52,7 @@ public class SmsService {
 */
     }
 
-    public void receive(MultiValueMap<String, String> smscallback) {
+    public void receive(MultiValueMap<String, String> smsCallBack) {
 
     }
 }

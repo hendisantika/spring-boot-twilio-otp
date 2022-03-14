@@ -40,9 +40,8 @@ public class SMSController {
     @PostMapping()
     public ResponseEntity<Boolean> sendSMS(@RequestBody Sms sms) {
         try {
-            log.info("hello");
+            log.info("Sending SMS OTP ...");
             service.send(sms);
-            log.info("hello");
         } catch (Exception e) {
 
             return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);

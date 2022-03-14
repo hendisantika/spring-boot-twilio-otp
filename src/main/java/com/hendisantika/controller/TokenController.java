@@ -2,6 +2,7 @@ package com.hendisantika.controller;
 
 import com.hendisantika.dto.OTP;
 import com.hendisantika.dto.TempOTP;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,13 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
  * Date: 14/03/22
  * Time: 08.10
  */
+@Slf4j
 @RestController
 public class TokenController {
     @PostMapping("/otp")
     public ResponseEntity<String> ValidateToken(@RequestBody TempOTP otp) {
 
         int sentOTP = OTP.getOtp();
-        System.out.println(sentOTP + ":" + otp.getOtp());
+        log.info(sentOTP + ":" + otp.getOtp());
         if (sentOTP == otp.getOtp()) {
             return new ResponseEntity<>("Success otp", HttpStatus.OK);
         }

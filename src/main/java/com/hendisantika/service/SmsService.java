@@ -39,15 +39,19 @@ public class SmsService {
         int number = (int) (Math.random() * (max - min + 1) + min);
 
         String msg = "Your OTP - " + number + " please verify this OTP in your Application by Hendi Santika " +
-                "https://linktr.ee/hendisantika";
+                "https://linktr.ee/hendisantika" +
+                "\n This OTP will be expired within 1 Minutes";
 
         Message message = Message.creator(new PhoneNumber(sms.getTo()), new PhoneNumber(FROM_NUMBER), msg)
                 .create();
 
         Date myDate = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = sdf.parse(myDate.toString());
-        long millis = date.getTime();
+        String pattern = "dd-MM-yyyy HH:mm:ss";
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        String date = sdf.format(myDate);
+        Date date2 = sdf.parse(date);
+
+        long millis = date2.getTime();
         log.info("Date Time: " + millis);
         OTP.setOtp(number);
         log.info("Here is my id:" + message.getSid());// Unique resource ID created to manage this transaction

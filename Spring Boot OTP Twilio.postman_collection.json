@@ -1,0 +1,66 @@
+{
+  "info": {
+    "_postman_id": "f905851d-aba9-4fc3-8b43-bf90a89c7ec1",
+    "name": "Spring Boot OTP Twilio",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Send OTP",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"to\": \"+6281321411881\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/api/otp",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "otp"
+          ]
+        },
+        "description": "Send OTP"
+      },
+      "response": []
+    },
+    {
+      "name": "Verify OTP",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"otp\": \"789444\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/otp",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "otp"
+          ]
+        },
+        "description": "Verify OTP"
+      },
+      "response": []
+    }
+  ]
+}

@@ -32,7 +32,7 @@ import java.time.format.DateTimeFormatter;
 public class SMSController {
     private final String TOPIC_DESTINATION = "/lesson/sms";
     @Autowired
-    private SmsService service;
+    private SmsService smsService;
     @Autowired
     private SimpMessagingTemplate webSocket;
 
@@ -41,7 +41,7 @@ public class SMSController {
     public ResponseEntity<Boolean> sendSMS(@RequestBody Sms sms) {
         try {
             log.info("Sending SMS OTP ...");
-            service.send(sms);
+            smsService.send(sms);
         } catch (Exception e) {
 
             return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -53,7 +53,7 @@ public class SMSController {
     @PostMapping(value = "/sms-callback", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces =
             MediaType.APPLICATION_JSON_VALUE)
     public void smsCallback(@RequestBody MultiValueMap<String, String> map) {
-        service.receive(map);
+        smsService.receive(map);
         webSocket.convertAndSend(TOPIC_DESTINATION, getTimeStamp() + ": Twilio has made a callback request! Here are " +
                 "the contents: " + map.toString());
     }

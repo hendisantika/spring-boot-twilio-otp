@@ -42,4 +42,18 @@ public class OtpService {
         otpCache.put(key, otp);
         return otp;
     }
+
+    //This method is used to return the OPT number against Key->Key values is username
+    public int getOtp(String key) {
+        try {
+            return otpCache.get(key);
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    //This method is used to clear the OTP cached already
+    public void clearOTP(String key) {
+        otpCache.invalidate(key);
+    }
 }
